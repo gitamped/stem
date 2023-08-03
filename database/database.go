@@ -10,13 +10,13 @@ import (
 )
 
 type Config struct {
-	User         string
-	Password     string
-	Host         string
-	Name         string
-	MaxIdleConns int
-	MaxOpenConns int
-	DisableTLS   bool
+	User         string `conf:"default:root"`
+	Password     string `conf:"default:arangodb,mask"`
+	Host         string `conf:"default:http://localhost:49157"`
+	Name         string `conf:"default:kjvonly"`
+	MaxIdleConns int    `conf:"default:2"`
+	MaxOpenConns int    `conf:"default:0"`
+	DisableTLS   bool   `conf:"default:true"`
 }
 
 func Open(cfg Config) (driver.Client, error) {
